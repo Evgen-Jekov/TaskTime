@@ -1,4 +1,4 @@
-from app.model.database import db
+from app.core.extensions import db
 from abc import abstractmethod
 from flask import Flask
 from flask_migrate import Migrate

@@ -1,8 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, String, Integer, DateTime
 from abc import abstractmethod
-
-db = SQLAlchemy()
 
 class BaseDB:
     @abstractmethod
@@ -20,7 +16,3 @@ class BaseDB:
     @abstractmethod
     def search_database(self, id_data):
         pass
-
-class TaskDataBase(BaseDB):
-    def __init__(self):
-        self.db = db
