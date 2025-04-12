@@ -3,6 +3,9 @@ from flask_restful import Api
 from flask_cors import CORS
 from app.connect.connector import ConnectExtension
 from config import Config
+from app.model.category_model import CategoryModel
+from app.model.task_model import TaskModel
+from app.model.timer_model import TimerModel
 
 def create_app():
     app = Flask(__name__)
