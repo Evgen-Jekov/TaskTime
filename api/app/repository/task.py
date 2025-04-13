@@ -16,12 +16,12 @@ class DeleteTask(DeleteDB):
 class UpdateTask(UpdateDB):
     def update_db(self, id, object : dict):
         try:
-            task = TaskModel.query.filter(TaskModel.id == id).filter()
+            task = TaskModel.query.filter(TaskModel.id == id).first()
 
             if task is None:
                 raise ValueError('Not found')
             
-            for key, value, in object.item():
+            for key, value, in object.items():
                 if hasattr(task, key):
                     setattr(task, key, value)
 
