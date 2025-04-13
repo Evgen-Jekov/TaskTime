@@ -16,6 +16,8 @@ class DeleteTimer(DeleteDB):
         except SQLAlchemyError:
             db.session.rollback()
             raise SQLAlchemyError
+        finally:
+            db.session.close()
 
 class UpdateTimer(UpdateDB):
     def update_db(self, id, object : dict):
@@ -33,6 +35,8 @@ class UpdateTimer(UpdateDB):
         except SQLAlchemyError:
             db.session.rollback()
             raise SQLAlchemyError
+        finally:
+            db.session.close()
         
 
 class SearchTimer(SearchTimerDB):
@@ -46,6 +50,8 @@ class SearchTimer(SearchTimerDB):
             return timer
         except SQLAlchemyError:
             raise SQLAlchemyError
+        finally:
+            db.session.close()
         
     def search_db_by_task(self, task_id):
         try:
@@ -57,3 +63,5 @@ class SearchTimer(SearchTimerDB):
             return timer
         except SQLAlchemyError:
             raise SQLAlchemyError
+        finally:
+            db.session.close()

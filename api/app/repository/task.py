@@ -16,6 +16,8 @@ class DeleteTask(DeleteDB):
         except SQLAlchemyError:
             db.session.rollback()
             raise SQLAlchemyError
+        finally:
+            db.session.close()
         
 class UpdateTask(UpdateDB):
     def update_db(self, id, object : dict):
@@ -33,6 +35,8 @@ class UpdateTask(UpdateDB):
         except SQLAlchemyError:
             db.session.rollback()
             raise SQLAlchemyError
+        finally:
+            db.session.close()
         
 class SearchTask(SearchDB):
     def search_db_by_id(self, id):
@@ -42,6 +46,8 @@ class SearchTask(SearchDB):
             return task
         except SQLAlchemyError:
             raise SQLAlchemyError
+        finally:
+            db.session.close()
         
     def search_db_by_name(self, name):
         try:
@@ -50,3 +56,5 @@ class SearchTask(SearchDB):
             return task
         except SQLAlchemyError:
             raise SQLAlchemyError
+        finally:
+            db.session.close()
