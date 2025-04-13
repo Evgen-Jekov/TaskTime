@@ -7,7 +7,7 @@ class AddDB:
 
 class UpdateDB:
     @abstractmethod
-    def update_db(self, object):
+    def update_db(self, id, object):
         pass
 
 class DeleteDB:
@@ -20,5 +20,10 @@ class SearchDB:
     def search_db_by_id(self, id):
         pass
 
+    @abstractmethod
     def search_db_by_name(self, name):
+        pass
+
+    @abstractmethod
+    def search_db_by_category_all(self, category_id):
         pass
