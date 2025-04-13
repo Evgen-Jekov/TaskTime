@@ -1,5 +1,5 @@
 from app.core.extensions import db
-from app.repository.database_abc import DeleteDB, UpdateDB, SearchDB, SearchCategoryDB
+from app.repository.database_abc import DeleteDB, UpdateDB, SearchDB
 from sqlalchemy.exc import SQLAlchemyError
 from app.model.task_model import TaskModel
         
@@ -48,17 +48,5 @@ class SearchTask(SearchDB):
             task = TaskModel.query.filter(TaskModel.name_task == name).first()
 
             return task
-        except SQLAlchemyError:
-            raise SQLAlchemyError
-        
-class SearchTaskCategory(SearchCategoryDB):
-    def search_db_by_category_all(self, category_id):
-        try:
-            all_task = TaskModel.query.filter(TaskModel.category_id == category_id).all()
-
-            if not all_task:
-                raise ValueError('Not found')
-
-            return all_task
         except SQLAlchemyError:
             raise SQLAlchemyError

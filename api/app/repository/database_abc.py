@@ -24,10 +24,15 @@ class SearchDB:
     def search_db_by_name(self, name):
         pass
 
-class SearchCategoryDB:
+class SearchCategory:
     @abstractmethod
-    def search_db_by_category_all(self, category_id):
+    def search_db_by_id(self, id):
         pass
+
+    @abstractmethod
+    def search_db_by_category_all(self):
+        pass
+
 
 class SearchTimerDB:
     @abstractmethod
