@@ -29,7 +29,7 @@ class SearchCategoryDB:
     def search_db_by_category_all(self, category_id):
         pass
 
-class SearchTimer:
+class SearchTimerDB:
     @abstractmethod
     def search_db_by_id(self, id):
         pass
