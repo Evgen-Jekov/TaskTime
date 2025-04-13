@@ -24,6 +24,16 @@ class SearchDB:
     def search_db_by_name(self, name):
         pass
 
+class SearchCategoryDB:
     @abstractmethod
     def search_db_by_category_all(self, category_id):
+        pass
+
+class SearchTimer:
+    @abstractmethod
+    def search_db_by_id(self, id):
+        pass
+
+    @abstractmethod
+    def search_db_by_task(self, task_id):
         pass
