@@ -2,14 +2,12 @@ from app.core.extensions import db
 from app.repository.database_abc import DeleteDB, UpdateDB, SearchDB
 from sqlalchemy.exc import SQLAlchemyError
 from app.model.task_model import TaskModel
+from app.repository.auxiliary import check_data_id, update_data, check_data_name
         
 class DeleteTask(DeleteDB):
     def delete_db(self, id):
         try:
-            task = TaskModel.query.filter(TaskModel.id == id).first()
-
-            if task is None:
-                raise ValueError('Not found')
+            task = check_data_id(model=TaskModel, id=id)
 
             db.session.delete(task)
             db.session.commit()
@@ -20,16 +18,11 @@ class DeleteTask(DeleteDB):
             db.session.close()
         
 class UpdateTask(UpdateDB):
-    def update_db(self, id, object : dict):
+    def update_db(self, id, obj : dict):
         try:
-            task = TaskModel.query.filter(TaskModel.id == id).first()
-
-            if task is None:
-                raise ValueError('Not found')
+            task = check_data_id(model=task, id=id)
             
-            for key, value, in object.items():
-                if hasattr(task, key):
-                    setattr(task, key, value)
+            update_data(task, obj=obj)
 
             db.session.commit()
         except SQLAlchemyError:
@@ -41,7 +34,7 @@ class UpdateTask(UpdateDB):
 class SearchTask(SearchDB):
     def search_db_by_id(self, id):
         try:
-            task = TaskModel.query.filter(TaskModel.id == id).first()
+            task = check_data_id(model=TaskModel, id=id)
 
             return task
         except SQLAlchemyError:
@@ -51,7 +44,7 @@ class SearchTask(SearchDB):
         
     def search_db_by_name(self, name):
         try:
-            task = TaskModel.query.filter(TaskModel.name_task == name).first()
+            task = check_data_name(model=TaskModel, name=name)
 
             return task
         except SQLAlchemyError:

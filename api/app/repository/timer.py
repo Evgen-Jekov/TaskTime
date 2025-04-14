@@ -2,14 +2,12 @@ from sqlalchemy.exc import SQLAlchemyError
 from app.core.extensions import db
 from app.repository.database_abc import DeleteDB, SearchTimerDB, UpdateDB
 from app.model.timer_model import TimerModel
+from app.repository.auxiliary import check_data_id, update_data, check_data_task_id
 
 class DeleteTimer(DeleteDB):
     def delete_db(self, id):
         try:
-            timer = TimerModel.query.filter(TimerModel.id == id).first()
-
-            if timer is None:
-                raise ValueError('Not found')
+            timer = check_data_id(model=TimerModel, id=id)
 
             db.session.delete(timer)
             db.session.commit()
@@ -20,16 +18,11 @@ class DeleteTimer(DeleteDB):
             db.session.close()
 
 class UpdateTimer(UpdateDB):
-    def update_db(self, id, object : dict):
+    def update_db(self, id, obj : dict):
         try:
-            timer = TimerModel.query.filter(TimerModel.id == id).first()
+            timer = check_data_id(model=TimerModel, id=id)
 
-            if timer is None:
-                raise ValueError('Not found')
-            
-            for key, value, in object.items():
-                if hasattr(timer, key):
-                    setattr(timer, key, value)
+            update_data(model=timer, obj=obj)
 
             db.session.commit()
         except SQLAlchemyError:
@@ -42,10 +35,7 @@ class UpdateTimer(UpdateDB):
 class SearchTimer(SearchTimerDB):
     def search_db_by_id(self, id):
         try:
-            timer = TimerModel.query.filter(TimerModel.id == id).first()
-
-            if timer is None:
-                raise ValueError('Not Found')
+            timer = check_data_id(model=TimerModel, id=id)
             
             return timer
         except SQLAlchemyError:
@@ -55,10 +45,7 @@ class SearchTimer(SearchTimerDB):
         
     def search_db_by_task(self, task_id):
         try:
-            timer = TimerModel.query.filter(TimerModel.task_id == task_id).all()
-
-            if not timer:
-                raise ValueError('Not found')
+            timer = check_data_task_id(model=TimerModel, task_id=task_id)
             
             return timer
         except SQLAlchemyError:
