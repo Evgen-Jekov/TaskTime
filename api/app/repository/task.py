@@ -20,7 +20,7 @@ class DeleteTask(DeleteDB):
 class UpdateTask(UpdateDB):
     def update_db(self, id, obj : dict):
         try:
-            task = check_data_id(model=task, id=id)
+            task = check_data_id(model=TaskModel, id=id)
             
             update_data(task, obj=obj)
 
