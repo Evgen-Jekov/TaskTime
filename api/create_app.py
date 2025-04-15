@@ -6,6 +6,7 @@ from config import Config
 from app.model.category_model import CategoryModel
 from app.model.task_model import TaskModel
 from app.model.timer_model import TimerModel
+from app.connect.connector_route import connect_route
 
 def create_app():
     app = Flask(__name__)
@@ -15,5 +16,6 @@ def create_app():
 
     connect_ex = ConnectExtension()
     connect_ex.connect(app=app)
+    connect_route(api=api)
 
     return app

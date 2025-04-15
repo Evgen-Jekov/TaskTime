@@ -1,4 +1,4 @@
-from api.app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase
+from app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase
 from app.serialization.serialization import SerializerBase, DeserializerBase
 from app.repository.database_abc import AddDB, DeleteDB, UpdateDB
 
