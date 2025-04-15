@@ -1,6 +1,6 @@
 from app.core.extensions import ma
-from marshmallow import fields, validate
-
+from app.model.task_model import TaskModel
+from marshmallow import fields, validate, post_load
 
 class TaskSchemes(ma.Schema):
     id = fields.Integer(required=True, dump_only=True)
@@ -11,3 +11,8 @@ class TaskSchemes(ma.Schema):
         validate.OneOf(['started', 'in progress', 'completed', 'overdue'])
     ])
     deadline = fields.Date(required=True, format='%Y-%m-%d')
+    category_id = fields.Integer(required=True)
+
+    @post_load
+    def make_task(self, data, **kwargs):
+        return TaskModel(**data)
