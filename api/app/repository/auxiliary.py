@@ -33,3 +33,5 @@ def update_data(model, obj):
     for key, value, in obj.items():
                 if hasattr(model, key):
                     setattr(model, key, value)
+
+    return model

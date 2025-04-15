@@ -7,7 +7,7 @@ class AddDB(ABC):
 
 class UpdateDB(ABC):
     @abstractmethod
-    def update_db(self, id, object):
+    def update_db(self, id, obj):
         pass
 
 class DeleteDB(ABC):

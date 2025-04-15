@@ -15,22 +15,20 @@ class DeleteCategory(DeleteDB):
         except SQLAlchemyError:
             db.session.rollback()
             raise SQLAlchemyError
-        finally:
-            db.session.close()
         
 class UpdateCategory(UpdateDB):
     def update_db(self, id, obj : dict):
         try:
             category = check_data_id(model=CategoryModel, id=id)
             
-            update_data(model=category, obj=obj)
+            res = update_data(model=category, obj=obj)
             
             db.session.commit()
+
+            return res
         except SQLAlchemyError:
             db.session.rollback()
             raise SQLAlchemyError
-        finally:
-            db.session.close()
 
 class SearchTaskCategory(SearchCategory):
     def search_db_by_category_all(self, category_id):
@@ -40,8 +38,6 @@ class SearchTaskCategory(SearchCategory):
             return all_task
         except SQLAlchemyError:
             raise SQLAlchemyError
-        finally:
-            db.session.close()
         
     def search_db_by_id(self, id):
         try:
@@ -50,5 +46,3 @@ class SearchTaskCategory(SearchCategory):
             return category
         except SQLAlchemyError:
             raise SQLAlchemyError
-        finally:
-            db.session.close()
