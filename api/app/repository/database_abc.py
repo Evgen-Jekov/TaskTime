@@ -30,7 +30,7 @@ class SearchCategory(ABC):
         pass
 
     @abstractmethod
-    def search_db_by_category_all(self):
+    def search_db_by_category_all(self, category_id):
         pass
 
 
