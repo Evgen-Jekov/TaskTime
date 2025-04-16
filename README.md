@@ -1,15 +1,15 @@
-# TaskTime
+# 🚀 TaskTime
 
 Hello, I started developing this project with the goal that it will one day become quite popular for people who need to plan their time. At the moment, it is released as an MVP on Flask.
 
-## Prerequisites
+## 🧰 Prerequisites
 - Python(3.10 version)
 
-## Dependencies
+## 🧩 Dependencies
 
-I'm using the Flask framework as the core of the app, it's an MVP app, so good old Flask seemed like a good choice
+I'm using the **Flask** framework as the core of the app, it's an MVP app, so good old Flask seemed like a good choice
 
-## Install 
+## ⚙️ Installation 
 
 If someone wants to test my API or improve it, I wrote a guide for installation, after a while a section will be added describing what and how it works in the project so that you don't have to deal with 0
 
@@ -40,3 +40,11 @@ If someone wants to test my API or improve it, I wrote a guide for installation,
     `FLASK_APP=main.py`
 
     Using FLASK_APP=main.py in .flaskenv we tell the terminal where to look for our flask application to work with the terminal, for example we will use it to apply migrations
+
+## 📦 Migrations
+
+I'll add it soon
+
+## ✍️ Author
+
+the author of the project is Zhekov Evgen, I hope someone will find it interesting, in any case if you read the README I am grateful to you ❤️
