@@ -24,9 +24,11 @@ If someone wants to test my API or improve it, I wrote a guide for installation,
 
 **Linux(MacOS):** 
 ```source venv/bin/activate```
+
 4. Now all that's left to do is just write in the console after activation:
 
 ```pip install -r requirements.txt```
+
 5. Then create .env and .flaskenv. 
 
 **In .env write:** 
