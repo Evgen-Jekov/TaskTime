@@ -11,6 +11,6 @@ class TaskModel(db.Model):
     deadline = Column(Date, nullable=True)
 
     category_id = Column(Integer, db.ForeignKey('category.id'), nullable=False)
-    category = db.relationship('Category', back_populates='tasks')
+    category = db.relationship('CategoryModel', back_populates='tasks')
 
     timers = db.relationship('TimerModel', back_populates='task', cascade='all, delete-orphan')

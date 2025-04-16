@@ -6,9 +6,9 @@ class ServiceAdd(ServiceAddBase):
     def add(self, ser : SerializerBase, der : DeserializerBase, fn_add : AddDB, data, sh):
         task = der.load_json(data=data, sh=sh)
 
-        fn_add(task)
+        fn_add.add_db(task)
 
-        return ser.to_json(task)
+        return ser.to_json(task, sh=sh)
     
 class ServiceDelete(ServiceDeleteBase):
     def delete(self, fn_del : DeleteDB, id):
