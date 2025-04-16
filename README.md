@@ -13,7 +13,7 @@ I'm using the **Flask** framework as the core of the app, it's an MVP app, so go
 
 If someone wants to test my API or improve it, I wrote a guide for installation, after a while a section will be added describing what and how it works in the project so that you don't have to deal with 0
 
-1. First run the command in the terminal: ```https://github.com/Evgen-Jekov/TaskTime```
+1. First run the command in the terminal: ```git clone https://github.com/Evgen-Jekov/TaskTime```
 
 2. Then create .venv with this command in the terminal: ```python -m venv venv```
 
