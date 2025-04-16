@@ -11,9 +11,9 @@ class DeleteTimer(DeleteDB):
 
             db.session.delete(timer)
             db.session.commit()
-        except SQLAlchemyError:
+        except SQLAlchemyError as e:
             db.session.rollback()
-            raise SQLAlchemyError
+            raise SQLAlchemyError(str(e))
 
 class UpdateTimer(UpdateDB):
     def update_db(self, id, obj : dict):
@@ -25,9 +25,9 @@ class UpdateTimer(UpdateDB):
             db.session.commit()
 
             return res
-        except SQLAlchemyError:
+        except SQLAlchemyError as e:
             db.session.rollback()
-            raise SQLAlchemyError
+            raise SQLAlchemyError(str(e))
         
 
 class SearchTimer(SearchTimerDB):
@@ -36,13 +36,13 @@ class SearchTimer(SearchTimerDB):
             timer = check_data_id(model=TimerModel, id=id)
             
             return timer
-        except SQLAlchemyError:
-            raise SQLAlchemyError
+        except SQLAlchemyError as e:
+            raise SQLAlchemyError(str(e))
         
     def search_db_by_task(self, task_id):
         try:
             timer = check_data_task_id(model=TimerModel, task_id=task_id)
             
             return timer
-        except SQLAlchemyError:
-            raise SQLAlchemyError
+        except SQLAlchemyError as e:
+            raise SQLAlchemyError(str(e))

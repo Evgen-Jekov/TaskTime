@@ -12,9 +12,9 @@ class DeleteCategory(DeleteDB):
 
             db.session.delete(category)
             db.session.commit()
-        except SQLAlchemyError:
+        except SQLAlchemyError as e:
             db.session.rollback()
-            raise SQLAlchemyError
+            raise SQLAlchemyError(str(e))
         
 class UpdateCategory(UpdateDB):
     def update_db(self, id, obj : dict):
@@ -26,9 +26,9 @@ class UpdateCategory(UpdateDB):
             db.session.commit()
 
             return res
-        except SQLAlchemyError:
+        except SQLAlchemyError as e:
             db.session.rollback()
-            raise SQLAlchemyError
+            raise SQLAlchemyError(str(e))
 
 class SearchTaskCategory(SearchCategory):
     def search_db_by_category_all(self, category_id):
@@ -36,13 +36,13 @@ class SearchTaskCategory(SearchCategory):
             all_task = check_data_category_id(model=CategoryModel, category_id=category_id)
 
             return all_task
-        except SQLAlchemyError:
-            raise SQLAlchemyError
+        except SQLAlchemyError as e:
+            raise SQLAlchemyError(str(e))
         
     def search_db_by_id(self, id):
         try:
             category = check_data_id(model=CategoryModel, id=id)
             
             return category
-        except SQLAlchemyError:
-            raise SQLAlchemyError
+        except SQLAlchemyError as e:
+            raise SQLAlchemyError(str(e))

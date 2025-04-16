@@ -7,6 +7,6 @@ class AddEssence(AddDB):
         try:
             db.session.add(object)
             db.session.commit()
-        except SQLAlchemyError:
+        except SQLAlchemyError as e:
             db.session.rollback()
-            raise SQLAlchemyError
+            raise SQLAlchemyError(str(e))
