@@ -12,5 +12,4 @@ class CategoryAddRoute(Resource):
         der = DeserializerAll()
         fn_add = AddEssence()
 
-        return {'detail' : ServiceAdd().add(ser=ser, der=der, fn_add=fn_add, data=data, sh=CategorySchemes),
-                'state' : 'Succsses'}
+        return {'detail' : ServiceAdd().add(ser=ser, der=der, fn_add=fn_add, data=data, sh=CategorySchemes)}, 201

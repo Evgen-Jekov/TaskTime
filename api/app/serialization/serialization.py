@@ -21,15 +21,15 @@ class SerializerAll(SerializerBase):
     def to_json(self, obj, sh):
         try:
             return sh().dump(obj)
-        except ValidationError:
-            raise ValidationError(message='Validate error')
+        except ValidationError as e:
+            raise ValidationError(message=str(e))
         
 class DeserializerAll(DeserializerBase):
     def load_json(self, data, sh):
         try:
             return sh().load(data)
-        except ValidationError:
-            raise ValidationError(message='Validate error')
+        except ValidationError as e:
+            raise ValidationError(message=str(e))
         
 class SerializerAllMany(SerializerBaseMany):
     def to_json(self, obj, sh):
