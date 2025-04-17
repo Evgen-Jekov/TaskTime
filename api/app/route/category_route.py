@@ -28,4 +28,4 @@ class CategoryUpdateRoute(Resource):
         ser = SerializerAll()
         fn_update = UpdateCategory()
 
-        return {'detail' : ServiceUpdate().update(ser=ser, fn_update=fn_update, id=id, data=data, sh=CategorySchemes)}
+        return {'detail' : ServiceUpdate().update(ser=ser, fn_update=fn_update, id=id, data=data, sh=CategorySchemes)}, 200

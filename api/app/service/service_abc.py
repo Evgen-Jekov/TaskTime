@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from app.serialization.serialization import SerializerBase, DeserializerBase
-from app.repository.database_abc import AddDB, DeleteDB, UpdateDB
+from app.repository.database_abc import AddDB, DeleteDB, UpdateDB, SearchDB
 
 
 class ServiceAddBase(ABC):
@@ -16,4 +16,13 @@ class ServiceDeleteBase(ABC):
 class ServiceUpdateBase(ABC):
     @abstractmethod
     def update(self, ser : SerializerBase, der : DeserializerBase, fn_update : UpdateDB, id, data, sh):
+        pass
+
+class ServiceSearchBase(ABC):
+    @abstractmethod
+    def search_id(self, ser : SerializerBase, id, fn_search : SearchDB, sh):
+        pass
+    
+    @abstractmethod
+    def search_name(self, ser : SerializerBase, name, fn_search : SearchDB, sh):
         pass
