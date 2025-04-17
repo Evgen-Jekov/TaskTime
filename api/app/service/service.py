@@ -1,6 +1,6 @@
-from app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase, ServiceSearchBase, ServiceSearchCategoryBase
+from app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase, ServiceSearchBase, ServiceSearchCategoryBase, ServiceSearchTimerBase
 from app.serialization.serialization import SerializerBase, DeserializerBase
-from app.repository.database_abc import AddDB, DeleteDB, UpdateDB, SearchDB, SearchCategory
+from app.repository.database_abc import AddDB, DeleteDB, UpdateDB, SearchDB, SearchCategory, SearchTimerDB
 from typing import Union
 
 class ServiceAdd(ServiceAddBase):
@@ -43,5 +43,16 @@ class ServiceSearchCategory(ServiceSearchCategoryBase):
     
     def search_category_id(self, ser : SerializerBase, id, fn_search : SearchCategory, sh):
         res = fn_search.search_db_by_id(id=id)
+
+        return ser.to_json(obj=res, sh=sh)
+    
+class ServiceSearchTimer(ServiceSearchTimerBase):
+    def search_id(self, ser : SerializerBase, id, fn_search : SearchTimerDB, sh):
+        res = fn_search.search_db_by_id(id=id)
+
+        return ser.to_json(obj=res, sh=sh)
+    
+    def search_task_id(self, ser : SerializerBase, task_id, fn_search : SearchTimerDB, sh):
+        res = fn_search.search_db_by_task(task_id=task_id)
 
         return ser.to_json(obj=res, sh=sh)

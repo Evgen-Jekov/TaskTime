@@ -1,6 +1,6 @@
 from app.route.task_route import TaskAddRoute, TaskDeleteRoute, TaskSearchIDRoute, TaskSearchNameRoute
 from app.route.category_route import CategoryAddRoute, CategoryDeleteRoute, CategoryUpdateRoute, CategorySearchAllRoute, CategorySearchIDRoute
-from app.route.timer_route import TimerAddRoute, TimerDeleteRoute
+from app.route.timer_route import TimerAddRoute, TimerDeleteRoute, TimerSearchIDRoute, TimerSearchTaskIDRoute
 from flask_restful import Api
 
 def connect_route(api : Api):
@@ -18,3 +18,5 @@ def connect_route(api : Api):
     api.add_resource(TaskSearchIDRoute, '/task-search-by-id/<int:id>')
     api.add_resource(CategorySearchIDRoute, '/category-search-by-id/<int:id>')
     api.add_resource(CategorySearchAllRoute, '/category-search-all/<int:category_id>')
+    api.add_resource(TimerSearchIDRoute, '/timer-search-by-id/<int:id>')
+    api.add_resource(TimerSearchTaskIDRoute, '/timer-search-by-task-id/<int:task_id>')
