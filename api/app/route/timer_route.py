@@ -43,4 +43,4 @@ class TimerSearchTaskIDRoute(Resource):
         fn_search = SearchTimer()
         ser = SerializerAll()
 
-        return {'detail' : ServiceSearchTimer().search_task_id(ser=ser, task_id=task_id, fn_search=fn_search, sh=TimerSchemes)}
+        return {'detail' : ServiceSearchTimer().search_task_id(ser=ser, task_id=task_id, fn_search=fn_search, sh=TimerSchemes)}, 200

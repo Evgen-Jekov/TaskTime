@@ -1,7 +1,6 @@
 from app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase, ServiceSearchBase, ServiceSearchCategoryBase, ServiceSearchTimerBase
 from app.serialization.serialization import SerializerBase, DeserializerBase
 from app.repository.database_abc import AddDB, DeleteDB, UpdateDB, SearchDB, SearchCategory, SearchTimerDB
-from typing import Union
 
 class ServiceAdd(ServiceAddBase):
     def add(self, ser : SerializerBase, der : DeserializerBase, fn_add : AddDB, data, sh):
