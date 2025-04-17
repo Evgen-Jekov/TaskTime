@@ -1,8 +1,8 @@
 from flask_restful import Resource
-from app.service.service import ServiceAdd, ServiceDelete, ServiceSearchDBAll
+from app.service.service import ServiceAdd, ServiceDelete, ServiceSearchDBAll, ServiceUpdate
 from app.serialization.serialization import SerializerAll, DeserializerAll
 from app.repository.add import AddEssence
-from app.repository.task import DeleteTask, SearchTask
+from app.repository.task import DeleteTask, SearchTask, UpdateTask
 from app.schemes.task_schemes import TaskSchemes
 from flask import request
 
@@ -20,6 +20,14 @@ class TaskDeleteRoute(Resource):
         fn_del = DeleteTask()
 
         return {'detail' : ServiceDelete().delete(fn_del=fn_del, id=id)}, 200
+    
+class TaskUpdateRoute(Resource):
+    def put(self, id):
+        data = request.get_json()
+        ser = SerializerAll()
+        fn_update = UpdateTask()
+
+        return {'detail' : ServiceUpdate().update(ser=ser, fn_update=fn_update, id=id, data=data, sh=TaskSchemes)}, 200
     
 class TaskSearchIDRoute(Resource):
     def get(self, id):

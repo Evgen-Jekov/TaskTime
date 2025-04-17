@@ -1,9 +1,9 @@
 from flask_restful import Resource
 from flask import request
-from app.service.service import ServiceAdd, ServiceDelete, ServiceSearchTimer
+from app.service.service import ServiceAdd, ServiceDelete, ServiceSearchTimer, ServiceUpdate
 from app.serialization.serialization import SerializerAll, DeserializerAll
 from app.repository.add import AddEssence
-from app.repository.timer import DeleteTimer, SearchTimer
+from app.repository.timer import DeleteTimer, SearchTimer, UpdateTimer
 from app.schemes.timer_schemes import TimerSchemes
 
 
@@ -21,6 +21,14 @@ class TimerDeleteRoute(Resource):
         fn_del = DeleteTimer()
 
         return {'detail' : ServiceDelete().delete(fn_del=fn_del, id=id)}, 200
+    
+class TimerUpdateRoute(Resource):
+    def put(self, id):
+        data = request.get_json()
+        ser = SerializerAll()
+        fn_update = UpdateTimer()
+
+        return {'detail' : ServiceUpdate().update(ser=ser, fn_update=fn_update, id=id, data=data, sh=TimerSchemes)}, 200
     
 class TimerSearchIDRoute(Resource):
     def get(self, id):
