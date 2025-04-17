@@ -33,7 +33,7 @@ class UpdateCategory(UpdateDB):
 class SearchTaskCategory(SearchCategory):
     def search_db_by_category_all(self, category_id):
         try:
-            all_task = check_data_category_id(model=CategoryModel, category_id=category_id)
+            all_task = check_data_category_id(model=TaskModel, category_id=category_id)
 
             return all_task
         except SQLAlchemyError as e:
