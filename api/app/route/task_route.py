@@ -27,3 +27,10 @@ class TaskSearchIDRoute(Resource):
         fn_search = SearchTask()
 
         return {'detail' : ServiceSearchDBAll().search_id(ser=ser, id=id, fn_search=fn_search, sh=TaskSchemes)}, 200
+    
+class TaskSearchNameRoute(Resource):
+    def get(self, name):
+        ser = SerializerAll()
+        fn_search = SearchTask()
+
+        return {'detail' : ServiceSearchDBAll().search_name(ser=ser, name=name, fn_search=fn_search, sh=TaskSchemes)}, 200
