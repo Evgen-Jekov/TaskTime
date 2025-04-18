@@ -43,7 +43,102 @@ If someone wants to test my API or improve it, I wrote a guide for installation,
 
 ## 📦 Migrations
 
-I'll add it soon
+for migrations I used Flask-Migrate, you can find the instructions on how to use it at this link:
+
+`https://flask-migrate.readthedocs.io/en/latest/`
+
+## 📃 instructions what works in the project
+
+Let's start with the fact that the project is built on SOLID principles (at least I tried to do it) and let me add that the work with the user is not added yet, and probably will not be added at all, I can not be sure who will want to work with the user, and so I prefer to leave this part for those enthusiasts who may decide to work with my project. now let's go through the layers of my application that how it is organized.
+
+Let's start with the project structure itself, where all the files are shown in expanded form:
+
+```
+├── api
+│   ├── app
+│   │   ├── connect
+│   │   │   ├── connector.py
+│   │   │   ├── connector_route.py
+│   │   │   └── __pycache__
+│   │   │       ├── connector.cpython-310.pyc
+│   │   │       └── connector_route.cpython-310.pyc
+│   │   ├── core
+│   │   │   ├── extensions.py
+│   │   │   └── __pycache__
+│   │   │       └── extensions.cpython-310.pyc
+│   │   ├── model
+│   │   │   ├── category_model.py
+│   │   │   ├── __pycache__
+│   │   │   │   ├── category_model.cpython-310.pyc
+│   │   │   │   ├── database.cpython-310.pyc
+│   │   │   │   ├── task_model.cpython-310.pyc
+│   │   │   │   └── timer_model.cpython-310.pyc
+│   │   │   ├── task_model.py
+│   │   │   └── timer_model.py
+│   │   ├── repository
+│   │   │   ├── add.py
+│   │   │   ├── auxiliary.py
+│   │   │   ├── category.py
+│   │   │   ├── database_abc.py
+│   │   │   ├── __pycache__
+│   │   │   │   ├── add.cpython-310.pyc
+│   │   │   │   ├── auxiliary.cpython-310.pyc
+│   │   │   │   ├── BaseDB.cpython-310.pyc
+│   │   │   │   ├── category.cpython-310.pyc
+│   │   │   │   ├── database_abc.cpython-310.pyc
+│   │   │   │   ├── task.cpython-310.pyc
+│   │   │   │   └── timer.cpython-310.pyc
+│   │   │   ├── task.py
+│   │   │   └── timer.py
+│   │   ├── route
+│   │   │   ├── category_route.py
+│   │   │   ├── __pycache__
+│   │   │   │   ├── category_route.cpython-310.pyc
+│   │   │   │   ├── task_route.cpython-310.pyc
+│   │   │   │   └── timer_route.cpython-310.pyc
+│   │   │   ├── task_route.py
+│   │   │   └── timer_route.py
+│   │   ├── schemes
+│   │   │   ├── category_schemes.py
+│   │   │   ├── __pycache__
+│   │   │   │   ├── category_schemes.cpython-310.pyc
+│   │   │   │   ├── task_schemes.cpython-310.pyc
+│   │   │   │   └── timer_schemes.cpython-310.pyc
+│   │   │   ├── task_schemes.py
+│   │   │   └── timer_schemes.py
+│   │   ├── serialization
+│   │   │   ├── __pycache__
+│   │   │   │   └── serialization.cpython-310.pyc
+│   │   │   └── serialization.py
+│   │   └── service
+│   │       ├── __pycache__
+│   │       │   ├── service_abc.cpython-310.pyc
+│   │       │   └── service.cpython-310.pyc
+│   │       ├── service_abc.py
+│   │       └── service.py
+│   ├── config.py
+│   ├── create_app.py
+│   ├── instance
+│   │   └── TaskTime.db
+│   ├── main.py
+│   ├── migrations
+│   │   ├── alembic.ini
+│   │   ├── env.py
+│   │   ├── __pycache__
+│   │   │   └── env.cpython-310.pyc
+│   │   ├── README
+│   │   ├── script.py.mako
+│   │   └── versions
+│   │       ├── 855f8ca66b33_task_category_and_timer_create.py
+│   │       └── __pycache__
+│   │           └── 855f8ca66b33_task_category_and_timer_create.cpython-310.pyc
+│   └── __pycache__
+│       ├── config.cpython-310.pyc
+│       ├── create_app.cpython-310.pyc
+│       └── main.cpython-310.pyc
+├── README.md
+└── requirements.txt
+```
 
 ## ✍️ Author
 
