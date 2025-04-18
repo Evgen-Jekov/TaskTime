@@ -161,7 +161,7 @@ Next, let's talk about which layers are responsible for what:
 
 - .flaskenv - This is a file created so that you don't have to set the flask variable in the terminal every time to work with the CLI, you just need to write this in the file: 
 
-`FLASK_APP=main.py`
+    `FLASK_APP=main.py`
 
 - config.py - this file has a class config, it is used to set the necessary configs for our application Flask through the method from_object
 
