@@ -58,7 +58,6 @@ Let's start with the project structure itself, where all the files are shown in 
 │   ├── app
 │   │   ├── connect
 │   │   │   ├── connector.py
-│   │   │   ├── connector_route.py
 │   │   │   └── __pycache__
 │   │   │       ├── connector.cpython-310.pyc
 │   │   │       └── connector_route.cpython-310.pyc
@@ -139,6 +138,42 @@ Let's start with the project structure itself, where all the files are shown in 
 ├── README.md
 └── requirements.txt
 ```
+
+Next, let's talk about which layers are responsible for what:
+
+- connect - this layer contains a class for connecting dependencies and routes of our API, the class name is Connector (it inherits from the Connect class).
+
+- core - Here are all dependencies that we connect to our application, for now there are not many, but in the future will be more.
+
+- model - Here are the models for working with the database through SQLAlcgemy, the models are not complicated, it will be easy to understand them
+
+- repository - The most interesting thing for me is that the repository contains our classes for low-level work with the database, these classes are inherited from interfaces (look for them in the database_abc.py file).
+
+- route - All routes of our application are collected here, they are as simple as possible due to the fact that they are only responsible for creating the necessary objects for working with services (we will get to them yet), so we will not dwell on them for long.
+
+- schemes - here is the storage of schemes for input data validation, they are based on our models (see models folder).
+
+- serialization - Although there is only one file here, but it is not less important, it describes classes for serialization and deserialization of our json or database objects through interfaces.
+
+- service - This is almost the main part of the process, with the help of class interfaces we create services that are as flexible as possible and can work with all operations, without paying attention to what database object is being worked with.
+
+- instance, migrations - These are folders created by libraries, you will have the same after installation and customization, also they are not added to the repository, so you can't look at them. 
+
+- .flaskenv - This is a file created so that you don't have to set the flask variable in the terminal every time to work with the CLI, you just need to write this in the file: 
+
+`FLASK_APP=main.py`
+
+- config.py - this file has a class config, it is used to set the necessary configs for our application Flask through the method from_object
+
+- create_app.py - there is only one function that creates our Flask application and connects everything needed to it
+
+- main.py - through this file we launch our application
+
+## 🎯 plans for the future
+
+1. improve the project architecture
+2. improve project optimization
+3. add data analytics if a decision is made to develop a mechanism for user interaction
 
 ## ✍️ Author
 
