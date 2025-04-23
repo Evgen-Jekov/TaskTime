@@ -1,5 +1,4 @@
 Flask
-PyQt6
 SQLAlchemy
 Alembic
 Flask-SQLAlchemy
