@@ -1,8 +1,7 @@
 from app.route.task_route import TaskAddRoute, TaskDeleteRoute, TaskSearchIDRoute, TaskSearchNameRoute, TaskUpdateRoute
 from app.route.category_route import CategoryAddRoute, CategoryDeleteRoute, CategoryUpdateRoute, CategorySearchAllRoute, CategorySearchIDRoute
 from app.route.timer_route import TimerAddRoute, TimerDeleteRoute, TimerSearchIDRoute, TimerSearchTaskIDRoute, TimerUpdateRoute
-from app.core.extensions import db
-from app.core.extensions import ma
+from app.core.extensions import db, ma, jwt
 from abc import abstractmethod, ABC
 from flask import Flask
 from flask_migrate import Migrate
@@ -22,6 +21,7 @@ class Connector(Connect):
         db.init_app(app=app)
         migrate = Migrate(app=app, db=db)
         ma.init_app(app=app)
+        jwt.init_app(app=app)
 
     def connect_route(self, api : Api):
         api.add_resource(TaskAddRoute, '/task-add')
