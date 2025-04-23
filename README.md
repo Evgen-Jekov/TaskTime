@@ -54,6 +54,7 @@ Let's start with the fact that the project is built on SOLID principles (at leas
 Let's start with the project structure itself, where all the files are shown in expanded form:
 
 ```
+.
 ├── api
 │   ├── app
 │   │   ├── connect
@@ -63,22 +64,26 @@ Let's start with the project structure itself, where all the files are shown in 
 │   │   ├── model
 │   │   │   ├── category_model.py
 │   │   │   ├── task_model.py
-│   │   │   └── timer_model.py
+│   │   │   ├── timer_model.py
+│   │   │   └── user_model.py
 │   │   ├── repository
 │   │   │   ├── add.py
 │   │   │   ├── auxiliary.py
 │   │   │   ├── category.py
 │   │   │   ├── database_abc.py
 │   │   │   ├── task.py
-│   │   │   └── timer.py
+│   │   │   ├── timer.py
+│   │   │   └── user.py
 │   │   ├── route
 │   │   │   ├── category_route.py
 │   │   │   ├── task_route.py
-│   │   │   └── timer_route.py
+│   │   │   ├── timer_route.py
+│   │   │   └── user_route.py
 │   │   ├── schemes
 │   │   │   ├── category_schemes.py
 │   │   │   ├── task_schemes.py
-│   │   │   └── timer_schemes.py
+│   │   │   ├── timer_schemes.py
+│   │   │   └── user_schemas.py
 │   │   ├── serialization
 │   │   │   └── serialization.py
 │   │   └── service
