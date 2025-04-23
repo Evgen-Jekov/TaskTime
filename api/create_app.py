@@ -5,6 +5,7 @@ from config import Config
 from app.model.category_model import CategoryModel
 from app.model.task_model import TaskModel
 from app.model.timer_model import TimerModel
+from app.model.user_model import UserModel
 from app.connect.connector import Connector
 
 def create_app():

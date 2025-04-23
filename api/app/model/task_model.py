@@ -10,7 +10,7 @@ class TaskModel(db.Model):
     state_task = Column(String(32), nullable=False)
     deadline = Column(Date, nullable=True)
 
-    user_id = Column(Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = Column(Integer, db.ForeignKey('user_task.id'), nullable=False)
     user = db.relationship('UserModel', back_populates='tasks')
 
     category_id = Column(Integer, db.ForeignKey('category.id'), nullable=False)
