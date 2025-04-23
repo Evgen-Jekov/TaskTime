@@ -1,6 +1,7 @@
 from app.route.task_route import TaskAddRoute, TaskDeleteRoute, TaskSearchIDRoute, TaskSearchNameRoute, TaskUpdateRoute
 from app.route.category_route import CategoryAddRoute, CategoryDeleteRoute, CategoryUpdateRoute, CategorySearchAllRoute, CategorySearchIDRoute
 from app.route.timer_route import TimerAddRoute, TimerDeleteRoute, TimerSearchIDRoute, TimerSearchTaskIDRoute, TimerUpdateRoute
+from app.route.user_route import UserLoginRoute, UserRegisterRoute, UserLogoutRoute, UserDeleteRoute, UserDataUpdateRoute
 from app.core.extensions import db, ma, jwt
 from abc import abstractmethod, ABC
 from flask import Flask
@@ -24,6 +25,13 @@ class Connector(Connect):
         jwt.init_app(app=app)
 
     def connect_route(self, api : Api):
+        api.add_resource(UserRegisterRoute, '/register')
+        api.add_resource(UserLoginRoute, '/login')
+        api.add_resource(UserLogoutRoute, '/logout')
+        api.add_resource(UserDeleteRoute, '/delete-user/{id}')
+        api.add_resource(UserDataUpdateRoute, '/user-update/{id}')
+
+
         api.add_resource(TaskAddRoute, '/task-add')
         api.add_resource(CategoryAddRoute, '/category-add')
         api.add_resource(TimerAddRoute, '/timer-add')
