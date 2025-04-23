@@ -129,9 +129,7 @@ Next, let's talk about which layers are responsible for what:
 ## 🎯 plans for the future
 
 1. create a mechanism for working with the user
-2. improve the project architecture
-3. improve project optimization
-4. add data analytics if a decision is made to develop a mechanism for user interaction
+4. add data analytics to a project
 
 ## ✍️ Author
 
