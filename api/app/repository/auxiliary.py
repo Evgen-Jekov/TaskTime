@@ -15,6 +15,14 @@ def check_data_name(model, name):
     
     return data
 
+def check_data_username(model, name):
+    data = model.query.filter(model.username  == name).first()
+
+    if data is None:
+        raise ValueError('Not found')
+    
+    return data
+
 def check_data_category_id(model, category_id):
     data = model.query.filter(model.category_id == category_id).all()
 
