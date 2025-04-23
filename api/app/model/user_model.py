@@ -9,3 +9,5 @@ class UserModel(db.Model):
     email = Column(String(length=256), nullable=False, unique=True)
     password = Column(String(length=128), nullable=False)
 
+    tasks = db.relationship('TaskModel', back_populates='user', cascade='all, delete-orphan') 
+
