@@ -9,3 +9,4 @@ marshmallow
 Flask-Marshmallow
 python-dotenv
 marshmallow-sqlalchemy
+flask-jwt-extended
