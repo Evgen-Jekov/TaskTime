@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from app.serialization.serialization import SerializerBase, DeserializerBase
 from app.repository.database_abc import AddDB, DeleteDB, UpdateDB, SearchDB, SearchCategory, SearchTimerDB
-
+from app.repository.database_abc import HashingDB, CheckDB
 
 class ServiceAddBase(ABC):
     @abstractmethod
@@ -42,4 +42,12 @@ class ServiceSearchTimerBase(ABC):
         pass
 
     def search_task_id(self, ser : SerializerBase, task_id, fn_search : SearchTimerDB, sh):
+        pass
+
+
+class ServiceLoginUserBase(ABC):
+    @abstractmethod
+    def login_user(self, ser : SerializerBase, der : DeserializerBase, 
+                   fn_add : AddDB, data, sh, 
+                   fn_hash_check : HashingDB, check : CheckDB):
         pass

@@ -1,14 +1,14 @@
-from app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase, ServiceSearchBase, ServiceSearchCategoryBase, ServiceSearchTimerBase
+from app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase, ServiceSearchBase, ServiceSearchCategoryBase, ServiceSearchTimerBase, ServiceLoginUserBase
 from app.serialization.serialization import SerializerBase, DeserializerBase
-from app.repository.database_abc import AddDB, DeleteDB, UpdateDB, SearchDB, SearchCategory, SearchTimerDB
+from app.repository.database_abc import AddDB, DeleteDB, UpdateDB, SearchDB, SearchCategory, SearchTimerDB, HashingDB, CheckDB
 
 class ServiceAdd(ServiceAddBase):
     def add(self, ser : SerializerBase, der : DeserializerBase, fn_add : AddDB, data, sh):
-        task = der.load_json(data=data, sh=sh)
+        odj = der.load_json(data=data, sh=sh)
 
-        fn_add.add_db(task)
+        fn_add.add_db(odj)
 
-        return ser.to_json(task, sh=sh)
+        return ser.to_json(odj, sh=sh)
     
 class ServiceDelete(ServiceDeleteBase):
     def delete(self, fn_del : DeleteDB, id):
@@ -55,3 +55,11 @@ class ServiceSearchTimer(ServiceSearchTimerBase):
         res = fn_search.search_db_by_task(task_id=task_id)
 
         return ser.to_json(obj=res, sh=sh)
+    
+class ServiceUserLogin(ServiceLoginUserBase):
+    def login_user(self, ser : SerializerBase, der : DeserializerBase, fn_add : AddDB,
+                   fn_hash_check : HashingDB, check : CheckDB, 
+                   data, sh):
+        obj = der.load_json(data=data, sh=sh)
+
+        

@@ -42,3 +42,17 @@ class SearchTimerDB(ABC):
     @abstractmethod
     def search_db_by_task(self, task_id):
         pass
+
+class HashingDB(ABC):
+    @abstractmethod
+    def hash_password(self, password):
+        pass
+
+    @abstractmethod
+    def hash_password_check(self, password, hspassword):
+        pass
+
+class CheckDB(ABC):
+    @abstractmethod
+    def check_by_username(self, username):
+        pass
