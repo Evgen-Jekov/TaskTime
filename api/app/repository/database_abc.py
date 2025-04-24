@@ -56,3 +56,8 @@ class CheckDB(ABC):
     @abstractmethod
     def check_by_username(self, username):
         pass
+
+class AddDBUser(ABC):
+    @abstractmethod
+    def add_db(self, hash, check, obj):
+        pass

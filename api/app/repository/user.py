@@ -1,9 +1,26 @@
-from app.repository.database_abc import DeleteDB, UpdateDB, SearchDB, HashingDB, CheckDB
+from app.repository.database_abc import DeleteDB, UpdateDB, SearchDB, HashingDB, CheckDB, AddDBUser
 from app.model.user_model import UserModel
 from app.repository.auxiliary import check_data_id, check_data_username, update_data
 from app.core.extensions import db
 from sqlalchemy.exc import SQLAlchemyError
 import bcrypt
+
+class AddUser(AddDBUser):
+    def add_db(self, hash : HashingDB, check : CheckDB, obj : UserModel):
+        try:
+            ch = check.check_by_username(username=obj.username)
+
+            if ch != True:
+                raise Exception('This user already exists')
+
+            obj.password = hash.hash_password(obj.password)
+
+            db.session.add(obj)
+            db.session.commit()
+
+            return obj
+        except SQLAlchemyError as e:
+            raise SQLAlchemyError(str(e))
 
 class DeleteUser(DeleteDB):
     def delete_db(self, id):
@@ -42,9 +59,9 @@ class HashingPassword(HashingDB):
         return bcrypt.checkpw(password.encode(), hspassword)
     
 class CheckUser(CheckDB):
-    def check_by_username(self, username):
+    def check_by_username(self, username, email):
         try:
-            user = check_data_username(model=UserModel, name=username)
+            user = check_data_username(model=UserModel, name=username, email=email)
 
             return user
         except Exception as e:
