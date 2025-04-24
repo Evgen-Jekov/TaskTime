@@ -1,6 +1,6 @@
 from flask_restful import Resource
-from app.service.service import ServiceUserRegister, ServiceUserLogin, ServiceDelete
-from app.repository.user import AddUser, HashingPassword, CheckUser, SearchUser, DeleteUser
+from app.service.service import ServiceUserRegister, ServiceUserLogin, ServiceDelete, ServiceUpdate
+from app.repository.user import AddUser, HashingPassword, CheckUser, SearchUser, DeleteUser, UpdateUser
 from app.serialization.serialization import SerializerAll, DeserializerAll
 from app.schemes.user_schemas import UserSchemes
 from flask import request
@@ -34,7 +34,12 @@ class UserLogoutRoute(Resource):
     pass
 
 class UserDataUpdateRoute(Resource):
-    pass
+    def put(self, id):
+        data = request.get_json()
+        fn_update = UpdateUser()
+        ser = SerializerAll()
+
+        return {'detail' : ServiceUpdate().update(ser=ser, fn_update=fn_update, id=id, data=data, sh=UserSchemes)}, 200
 
 class UserDeleteRoute(Resource):
     def delete(self, id):

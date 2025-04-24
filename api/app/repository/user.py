@@ -67,7 +67,7 @@ class CheckUser(CheckDB):
         except Exception as e:
             raise Exception(str(e))
 
-class UpdatePasswordUser(UpdateDB):
+class UpdateUser(UpdateDB):
     def update_db(self, id, obj):
         try:
             user = check_data_id(model=UserModel, id=id)
