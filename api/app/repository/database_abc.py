@@ -54,7 +54,7 @@ class HashingDB(ABC):
 
 class CheckDB(ABC):
     @abstractmethod
-    def check_by_username(self, username):
+    def check_by_username(self, username, email):
         pass
 
 class AddDBUser(ABC):

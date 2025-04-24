@@ -45,9 +45,14 @@ class ServiceSearchTimerBase(ABC):
         pass
 
 
-class ServiceLoginUserBase(ABC):
+class ServiceRegisterUserBase(ABC):
     @abstractmethod
-    def login_user(self, ser : SerializerBase, der : DeserializerBase, 
+    def register_user(self, ser : SerializerBase, der : DeserializerBase, 
                    fn_add : AddDB, data, sh, 
                    fn_hash_check : HashingDB, check : CheckDB):
+        pass
+
+class ServiceJWTBase(ABC):
+    @abstractmethod
+    def create_jwt(self, user_id):
         pass

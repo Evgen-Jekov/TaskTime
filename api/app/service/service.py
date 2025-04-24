@@ -1,6 +1,8 @@
-from app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase, ServiceSearchBase, ServiceSearchCategoryBase, ServiceSearchTimerBase, ServiceLoginUserBase
+from app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase, ServiceSearchBase, ServiceSearchCategoryBase, ServiceSearchTimerBase, ServiceRegisterUserBase, ServiceJWTBase
 from app.serialization.serialization import SerializerBase, DeserializerBase
 from app.repository.database_abc import AddDB, DeleteDB, UpdateDB, SearchDB, SearchCategory, SearchTimerDB, HashingDB, CheckDB, AddDBUser
+from flask_jwt_extended import create_access_token
+from datetime import timedelta
 
 class ServiceAdd(ServiceAddBase):
     def add(self, ser : SerializerBase, der : DeserializerBase, fn_add : AddDB, data, sh):
@@ -56,7 +58,7 @@ class ServiceSearchTimer(ServiceSearchTimerBase):
 
         return ser.to_json(obj=res, sh=sh)
     
-class ServiceUserRegister(ServiceLoginUserBase):
+class ServiceUserRegister(ServiceRegisterUserBase):
     def register_user(self, ser : SerializerBase, der : DeserializerBase, fn_add : AddDBUser,
                    fn_hash : HashingDB, fn_check : CheckDB, 
                    data, sh):
@@ -64,5 +66,8 @@ class ServiceUserRegister(ServiceLoginUserBase):
 
         res = fn_add.add_db(hash=fn_hash, check=fn_check, obj=obj)
 
-        return ser.to_json(obj=res, sh=sh)
+        return {'detail' : ser.to_json(obj=res, sh=sh), 'token' : ServiceJWT().create_jwt(user_id=res.id)}
 
+class ServiceJWT(ServiceJWTBase):
+    def create_jwt(self, user_id):
+        return create_access_token(identity=user_id, expires_delta=timedelta(days=1))

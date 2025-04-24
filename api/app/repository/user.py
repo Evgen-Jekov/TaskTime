@@ -8,7 +8,7 @@ import bcrypt
 class AddUser(AddDBUser):
     def add_db(self, hash : HashingDB, check : CheckDB, obj : UserModel):
         try:
-            ch = check.check_by_username(username=obj.username)
+            ch = check.check_by_username(username=obj.username, email=obj.email)
 
             if ch != True:
                 raise Exception('This user already exists')
