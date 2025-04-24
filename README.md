@@ -129,7 +129,8 @@ Next, let's talk about which layers are responsible for what:
 ## 🎯 plans for the future
 
 1. create a mechanism for working with the user
-4. add data analytics to a project
+2. add data analytics to a project
+3. transition to PostgreSQL
 
 ## ✍️ Author
 
