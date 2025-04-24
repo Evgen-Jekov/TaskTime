@@ -57,12 +57,12 @@ class ServiceSearchTimer(ServiceSearchTimerBase):
         return ser.to_json(obj=res, sh=sh)
     
 class ServiceUserRegister(ServiceLoginUserBase):
-    def login_user(self, ser : SerializerBase, der : DeserializerBase, fn_add : AddDBUser,
-                   fn_hash : HashingDB, check : CheckDB, 
+    def register_user(self, ser : SerializerBase, der : DeserializerBase, fn_add : AddDBUser,
+                   fn_hash : HashingDB, fn_check : CheckDB, 
                    data, sh):
         obj = der.load_json(data=data, sh=sh)
 
-        res = fn_add.add_db(hash=fn_hash, check=check, obj=obj)
+        res = fn_add.add_db(hash=fn_hash, check=fn_check, obj=obj)
 
         return ser.to_json(obj=res, sh=sh)
 
