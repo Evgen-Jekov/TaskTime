@@ -28,8 +28,8 @@ class Connector(Connect):
         api.add_resource(UserRegisterRoute, '/register')
         api.add_resource(UserLoginRoute, '/login')
         api.add_resource(UserLogoutRoute, '/logout')
-        api.add_resource(UserDeleteRoute, '/delete-user/{id}')
-        api.add_resource(UserDataUpdateRoute, '/user-update/{id}')
+        api.add_resource(UserDeleteRoute, '/delete-user/<int:id>')
+        api.add_resource(UserDataUpdateRoute, '/user-update/<int:id>')
 
 
         api.add_resource(TaskAddRoute, '/task-add')
