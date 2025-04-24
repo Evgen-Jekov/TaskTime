@@ -1,6 +1,6 @@
 from app.repository.database_abc import DeleteDB, UpdateDB, SearchDB, HashingDB, CheckDB, AddDBUser
 from app.model.user_model import UserModel
-from app.repository.auxiliary import check_data_id, check_data_username, update_data
+from app.repository.auxiliary import check_data_id, check_data_username, update_data, check_data_user
 from app.core.extensions import db
 from sqlalchemy.exc import SQLAlchemyError
 import bcrypt
@@ -45,7 +45,7 @@ class SearchUser(SearchDB):
         
     def search_db_by_name(self, name):
         try:
-            user = check_data_username(model=UserModel, name=name)
+            user = check_data_user(model=UserModel, name=name)
 
             return user
         except SQLAlchemyError as e:

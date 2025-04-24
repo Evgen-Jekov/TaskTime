@@ -17,13 +17,22 @@ def check_data_name(model, name):
 
 def check_data_username(model, name, email):
     user = model.query.filter(model.username  == name).first()
-    email_user = model.query.filter(model.email  == name).first()
+    email_user = model.query.filter(model.email  == email).first()
 
     if user is not None or email_user is not None:
          raise ValueError('The user has already been created')
     
     return True
 
+
+def check_data_user(model, name):
+     user = model.query.filter(model.username  == name).first()
+
+     if user is None:
+          raise ValueError('Not found')
+     
+     return user
+ 
 def check_data_category_id(model, category_id):
     data = model.query.filter(model.category_id == category_id).all()
 

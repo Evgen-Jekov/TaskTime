@@ -1,13 +1,19 @@
 from flask_restful import Resource
-from app.service.service import ServiceUserRegister
-from app.repository.user import AddUser, HashingPassword, CheckUser
+from app.service.service import ServiceUserRegister, ServiceUserLogin
+from app.repository.user import AddUser, HashingPassword, CheckUser, SearchUser
 from app.serialization.serialization import SerializerAll, DeserializerAll
 from app.schemes.user_schemas import UserSchemes
-from app.service.service import ServiceJWT
 from flask import request
 
 class UserLoginRoute(Resource):
-    pass
+    def post(self):
+        data = request.get_json()
+        ser = SerializerAll()
+        der = DeserializerAll()
+        fn_sh = SearchUser()
+
+        return ServiceUserLogin().login_user(ser=ser, der=der, fn_sh=fn_sh, data=data, sh=UserSchemes), 200
+
 
 class UserRegisterRoute(Resource):
     def post(self):

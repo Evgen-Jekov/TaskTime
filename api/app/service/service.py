@@ -1,4 +1,4 @@
-from app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase, ServiceSearchBase, ServiceSearchCategoryBase, ServiceSearchTimerBase, ServiceRegisterUserBase, ServiceJWTBase
+from app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase, ServiceSearchBase, ServiceSearchCategoryBase, ServiceSearchTimerBase, ServiceRegisterUserBase, ServiceJWTBase, ServiceLoginUserBase
 from app.serialization.serialization import SerializerBase, DeserializerBase
 from app.repository.database_abc import AddDB, DeleteDB, UpdateDB, SearchDB, SearchCategory, SearchTimerDB, HashingDB, CheckDB, AddDBUser
 from flask_jwt_extended import create_access_token
@@ -65,6 +65,14 @@ class ServiceUserRegister(ServiceRegisterUserBase):
         obj = der.load_json(data=data, sh=sh)
 
         res = fn_add.add_db(hash=fn_hash, check=fn_check, obj=obj)
+
+        return {'detail' : ser.to_json(obj=res, sh=sh), 'token' : ServiceJWT().create_jwt(user_id=res.id)}
+    
+class ServiceUserLogin(ServiceLoginUserBase):
+    def login_user(self, ser : SerializerBase, der : DeserializerBase, fn_sh : SearchDB, data, sh):
+        obj = der.load_json(data=data, sh=sh)
+
+        res = fn_sh.search_db_by_name(name=obj.username)
 
         return {'detail' : ser.to_json(obj=res, sh=sh), 'token' : ServiceJWT().create_jwt(user_id=res.id)}
 

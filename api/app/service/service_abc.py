@@ -52,6 +52,12 @@ class ServiceRegisterUserBase(ABC):
                    fn_hash_check : HashingDB, check : CheckDB):
         pass
 
+class ServiceLoginUserBase(ABC):
+    @abstractmethod
+    def login_user(self, ser : SerializerBase, der : DeserializerBase, 
+                   fn_sh : AddDB, data, sh):
+        pass
+
 class ServiceJWTBase(ABC):
     @abstractmethod
     def create_jwt(self, user_id):
