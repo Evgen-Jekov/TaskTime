@@ -1,4 +1,4 @@
-from app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase, ServiceSearchBase, ServiceSearchCategoryBase, ServiceSearchTimerBase, ServiceRegisterUserBase, ServiceJWTBase, ServiceLoginUserBase
+from app.service.service_abc import ServiceAddBase, ServiceDeleteBase, ServiceUpdateBase, ServiceSearchBase, ServiceSearchCategoryBase, ServiceSearchTimerBase, ServiceRegisterUserBase, ServiceJWTBase, ServiceLoginUserBase, ServiceUserLogoutBase
 from app.serialization.serialization import SerializerBase, DeserializerBase
 from app.repository.database_abc import AddDB, DeleteDB, UpdateDB, SearchDB, SearchCategory, SearchTimerDB, HashingDB, CheckDB, AddDBUser
 from flask_jwt_extended import create_access_token
@@ -79,3 +79,15 @@ class ServiceUserLogin(ServiceLoginUserBase):
 class ServiceJWT(ServiceJWTBase):
     def create_jwt(self, user_id):
         return create_access_token(identity=user_id, expires_delta=timedelta(days=1))
+    
+
+#class ServiceUserLogout(ServiceUserLogoutBase):
+#    def logout_user(self, ser, der, data, sh):
+#        obj = der.load_json(data=data, sh=sh)
+#
+#        token = obj.get('token')
+#        if not token:
+#            return {'detail': 'Token not provided'}, 400
+
+#
+#        return {'detail': 'Successfully logged out'}

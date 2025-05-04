@@ -62,3 +62,8 @@ class ServiceJWTBase(ABC):
     @abstractmethod
     def create_jwt(self, user_id):
         pass
+
+class ServiceUserLogoutBase(ABC):
+    @abstractmethod
+    def logout_user(self, ser, der, data, sh):
+        pass
